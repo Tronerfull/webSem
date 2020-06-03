@@ -1,0 +1,63 @@
+.container {
+    background-color: papayawhip;
+    padding: 20px;
+    margin: 10px;
+    min-width: 510px;
+
+    .title {}
+
+    .content {
+        min-width: 500px;
+
+        div>p-card {
+            .ui-card {
+                .ui-card-header {
+                    background-color: brown;
+                    height: 50px;
+                    display: flex;
+                    align-items: center;
+                    color: white;
+
+                    h2 {
+                        margin-left: 1em;
+
+                        a {
+                            text-decoration: none;
+                            color:black;
+                        }
+                        a:hover
+                        {
+
+                          color:deepskyblue;
+                        }
+                    }
+                }
+
+                .ui-card-body {                   
+                    .ui-card-content {
+                        display: flex;
+                        align-items: flex-start;
+                        justify-content: space-between;
+
+                        .card-table {
+                            width: 100%;
+                            text-align: center;
+
+                            tr {
+                                td {
+                                    padding: 10px;
+                                    background-color: wheat;
+
+                                    &.leg {
+                                        background-color: cyan;
+                                        font-weight: bold;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

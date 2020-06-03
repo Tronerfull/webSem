@@ -1,0 +1,45 @@
+<div class="container p-grid">
+  <div class="title p-col-12">
+    <h1>Videojuegos añadidos por mi</h1>
+  </div>
+  <div class="content p-grid" *ngIf="loaded">
+    <div *ngFor="let videogame of results" class="p-xl-6 p-md-12 p-lg-6 p-sm-12" itemscope itemtype="http://schema.org/Person">
+      <p-card>
+        <p-header>
+          <h2 itemprop="name"><a href="{{ videogame.identity.url }}">{{ videogame.identity.value }}</a></h2>
+        </p-header>
+        <table class="card-table">
+          <tbody>
+          <tr  *ngFor="let platform of videogame.platform">
+            <td class="leg">Plataforma:</td>
+            <td itemprop="platform"><a href="{{ platform.url }}">{{ platform.value }}</a></td>
+          </tr>
+          <tr  *ngFor="let dt of videogame.distributedby">
+            <td class="leg">Disponible en:</td>
+            <td itemprop="distributor"><a href="{{ dt.url }}">{{ dt.value }}</a></td>
+          </tr>
+          <tr  *ngFor="let gen of videogame.genre">
+            <td class="leg">Genero:</td>
+            <td itemprop="genre"><a href="{{ gen.url }}">{{ gen.value }}</a></td>
+          </tr>
+          <tr  *ngFor="let gm of videogame.gamemode">
+            <td class="leg">Modo de juego:</td>
+            <td itemprop="gamemode"><a href="{{ gm.url }}">{{ gm.value }}</a></td>
+          </tr>
+          <tr  *ngFor="let dev of videogame.developer">
+            <td class="leg">Desarrollado por:</td>
+            <td itemprop="developer"><a href="{{ dev.url }}">{{ dev.value }}</a></td>
+          </tr>
+          <tr  *ngFor="let pb of videogame.publisher">
+            <td class="leg">Editor:</td>
+            <td itemprop="publisher"><a href="{{ pb.url }}">{{ pb.value }}</a></td>
+          </tr>
+          </tbody>
+        </table>
+        <p-footer>
+          <ngx-json-ld [json]="videogame.toJSONLD()"></ngx-json-ld>
+        </p-footer>
+      </p-card>
+    </div>
+  </div>
+</div>

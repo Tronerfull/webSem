@@ -1,0 +1,78 @@
+<div class="container p-grid">
+  <div class="title p-col-12">
+    <h1>Prepared queries</h1>
+  </div>
+  <div class="content p-grid">
+    <div class="p-col-5 p-md-4 p-sm-9">
+      <p-table [columns]="queryCol" [value]="queries" selectionMode="single" [paginator]="true" [rows]="15"
+        dataKey="name" [(selection)]="selectedQuery" (onRowSelect)="onQuerySelect($event)"
+        (onRowUnselect)="onQueryUnselect($event)">
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+              {{col.header}}
+              <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order">
+              </p-sortIcon>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-query let-columns="columns">
+          <tr [pSelectableRow]="query">
+            <td *ngFor="let col of columns">
+              {{query[col.field]}}
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          Hay {{queries?.length}} queries registradas
+        </ng-template>
+      </p-table>
+    </div>
+    <div class="p-col-7 p-md-8 p-sm-9 results">
+      <h2 *ngIf="loading">Cargando esto puede llevar un poco...</h2>
+      <p-table #dt *ngIf="queryResult" [columns]="resCols" [lazy]="false"
+      [value]="tableData" [paginator]="true" [rows]="15">
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+              {{col.header}}
+              <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order">
+              </p-sortIcon>
+            </th>
+          </tr>
+          <tr>
+            <th *ngFor="let col of columns">
+              <input *ngIf="col.header.includes('LABEL')" pInputText type="text" 
+              style="width:100%;height: 100%;"
+              (input)="onFilter($event, col.field)">
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-res let-columns="columns">
+          <tr>
+            <td *ngFor="let col of columns">
+              <ng-container *ngIf="col.field === 'img' && res[col.field]; else noImg">
+                <img src="{{res[col.field]}}" alt="{{res[col.field]}}" width="75">
+              </ng-container>
+              <ng-template #noImg>
+                <ng-container *ngIf="res[col.field] && res.type.get(col.field) === 'uri'; else noUri">
+                  <a href="{{res[col.field]}}" target="_blank" rel="noopener noreferrer">
+                    {{ res[col.field].split('entity/')[1] }}
+                  </a>
+                </ng-container>
+                <ng-template #noUri>
+                  <span>{{ res[col.field] }}</span>
+                </ng-template>
+              </ng-template>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+          Hay {{ queryResult.length }} resultados. Mostrando {{ dt.totalRecords }}.
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

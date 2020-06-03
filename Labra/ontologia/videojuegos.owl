@@ -1,0 +1,167 @@
+@prefix : <http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3> .
+
+<http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#pertenece_a
+:pertenece_a rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             rdf:type owl:AsymmetricProperty ;
+             rdfs:domain :Videojuego ;
+             rdfs:range :Estudio .
+
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#trabajo_en
+:trabajo_en rdf:type owl:ObjectProperty ,
+                     owl:AsymmetricProperty ;
+            rdfs:domain :Personal ;
+            rdfs:range :Videojuego .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#Genero
+:Genero rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Videojuego ;
+        rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#Sexo
+:Sexo rdf:type owl:DatatypeProperty ;
+      rdfs:domain :Personal ;
+      rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#edad
+:edad rdf:type owl:DatatypeProperty ;
+      rdfs:domain :Personal ;
+      rdfs:range xsd:integer .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#Artista
+:Artista rdf:type owl:Class ;
+         rdfs:subClassOf :Personal .
+
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#Director
+:Director rdf:type owl:Class ;
+          rdfs:subClassOf :Personal .
+
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#Encargado_de_sonido
+:Encargado_de_sonido rdf:type owl:Class ;
+                     rdfs:subClassOf :Personal .
+
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#Estudio
+:Estudio rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#Personal
+:Personal rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#Programador
+:Programador rdf:type owl:Class ;
+             rdfs:subClassOf :Personal .
+
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#Videojuego
+:Videojuego rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#Aunuma
+:Aunuma rdf:type owl:NamedIndividual ,
+                 :Director ;
+        :trabajo_en :Breath_of_the_wild ;
+        :Sexo "Hombre"^^xsd:string .
+
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#Breath_of_the_wild
+:Breath_of_the_wild rdf:type owl:NamedIndividual ,
+                             :Videojuego ;
+                    :pertenece_a :Nintendo ;
+                    :Genero "Aventuras"^^xsd:string .
+
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#Iwatasi_Imoto
+:Iwatasi_Imoto rdf:type owl:NamedIndividual ,
+                        :Artista ;
+               :trabajo_en :Pokemon_Sword_and_shield ;
+               :Sexo "Hombre"^^xsd:string .
+
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#Jo-Un_Sun_Yo
+:Jo-Un_Sun_Yo rdf:type owl:NamedIndividual ,
+                       :Programador ;
+              :trabajo_en :Library_of_Ruina ;
+              :Sexo "Mujer"^^xsd:string .
+
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#Library_of_Ruina
+:Library_of_Ruina rdf:type owl:NamedIndividual ,
+                           :Videojuego ;
+                  :pertenece_a :ProjectMoon ;
+                  :Genero "Estrategia"^^xsd:string .
+
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#Lobotomy_corp
+:Lobotomy_corp rdf:type owl:NamedIndividual ,
+                        :Videojuego ;
+               :pertenece_a :ProjectMoon ;
+               :Genero "Estrategia"^^xsd:string .
+
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#Nintendo
+:Nintendo rdf:type owl:NamedIndividual ,
+                   :Estudio .
+
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#Pokemon_Sword_and_shield
+:Pokemon_Sword_and_shield rdf:type owl:NamedIndividual ,
+                                   :Videojuego ;
+                          :pertenece_a :Nintendo ;
+                          :Genero "Combate por turnos"^^xsd:string .
+
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#ProjectMoon
+:ProjectMoon rdf:type owl:NamedIndividual ,
+                      :Estudio .
+
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#William_Griever
+:William_Griever rdf:type owl:NamedIndividual ,
+                          :Artista ;
+                 :trabajo_en :Breath_of_the_wild ;
+                 :Sexo "Hombre"^^xsd:string .
+
+
+###  http://www.semanticweb.org/torre/ontologies/2020/4/untitled-ontology-3#Yun-Sang_Loo
+:Yun-Sang_Loo rdf:type owl:NamedIndividual ,
+                       :Encargado_de_sonido ;
+              :trabajo_en :Library_of_Ruina ,
+                          :Lobotomy_corp ;
+              :Sexo "Mujer"^^xsd:string ;
+              :edad "38"^^xsd:int .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
